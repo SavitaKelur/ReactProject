@@ -20,16 +20,18 @@ class Hello extends React.Component {
     return e('div',{style: {color : 'red'}} ,`Hello ${this.props.name}`, e('h1', {id: 'myMsg'} , "Welcome") );
   }
 }
-ReactDOM.render(
-  e(Hello, {name: 'Savita'}, e(Count, null, null),),
-  document.getElementById('root')
-)
+
 
 function Button (props){
   return e('button',{onClick:props.handleClick},props.name)
 }
 class Count extends React.Component {
-  
+  constructor(props){
+    super(props);
+    this.handleInc= this.handleInc.bind(this);
+    this.handleDec= this.handleDec.bind(this);
+
+  }
   state = {
     num:0
   }
@@ -48,15 +50,24 @@ class Count extends React.Component {
 
   render () {
     return (
-      e('div', null, e('button', {onClick:{this.handleInc}},null), e('button', {onClick:{this.handleDec}},null), e('h1', null, `count is ${this.state.num}`),)
+      e('div', null, e('button', ${this.props.nameInc} ,null), e('button', ${this.props.nameDec} ,null), e('h1', null, `count is ${this.state.num}`),)
       /* <div>
       <button onClick={this.handleInc}> Increment </button>
       <button onClick={this.handleDec}> Decrement </button>
-      <p>`count is ${this.state.num}`</p>
-      </div> */
-      )
+      <p>count</p>
+      </div>  */
+      );
   }
 }
+
+
+ReactDOM.render(
+  e(Hello, {name: 'Savita'}, e(Count, {nameInc: 'IncBtn',nameDec:'DecBtn' }, null)),
+  document.getElementById('root')
+)
+
+
+
 
 
 /* //using React.creatClass

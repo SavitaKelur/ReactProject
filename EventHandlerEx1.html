@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class EventWithRef extends React.Component{
+      constructor(props){
+        super(props);
+        this.focusUsingRef=this.focusUsingRef.bind(this);
+      }
+
+      focusUsingRef(){
+        this.myTextInput.focus();
+      }
+
+      render() {
+        return (
+            <div>
+                <input type="text" ref={(input)=>{ this.myTextInput=input;}}/>
+                <button className='btn' onClick={this.focusUsingRef}>hover</button>
+            </div>
+        );
+      }
+    }
+    class Hello extends React.Component {
+      render(){
+        return(
+          <h1>`Welcome dear ${this.props.name}` </h1>
+          <h3>Happy codeing</h3>
+        );
+      }
+    }
+    ReactDOM.render(
+      React.createElement(Hello, {name: 'Savita'}, React.createElement(EventWithRef, null, null)),
+    document.getElementById('root'));
+  </script>
+</body>
+</html>
